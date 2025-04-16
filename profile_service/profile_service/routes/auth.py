@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
-from auth_service.utils.auth_utils import *
-from auth_service.models.user import db, BaseUser, RoleUpdate
-from auth_service.utils.s3_utils import upload_image_to_s3
+from profile_service.utils.auth_utils import *
+from profile_service.models.user import db, BaseUser, RoleUpdate
+from profile_service.utils.s3_utils import upload_image_to_s3
 from datetime import datetime
 
 reg_bp = Blueprint('reg_bp', __name__)

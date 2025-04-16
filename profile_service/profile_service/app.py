@@ -1,6 +1,7 @@
 import os
 import logging
 from flask import Flask
+from flask_migrate import Migrate
 from profile_service.models.user_profile_model import db
 from profile_service.flask_config import Config
 from profile_service.routes.user_profiles import (
@@ -9,6 +10,9 @@ from profile_service.routes.user_profiles import (
     role_bp,
     profile_bp
 )
+
+import debugpy
+migrate = Migrate()
 
 def create_app():
     # Setup logging
@@ -26,8 +30,7 @@ def create_app():
         'DATABASE_URL', 'sqlite:///ridebase.db'
     )
     
-    # Initialize extensions
-    db.init_app(app)
+   
 
     # Register Blueprints
     app.register_blueprint(reg_bp)
@@ -40,13 +43,14 @@ def create_app():
     def index():
         return {"message": "User Profile Service is up and running!"}, 200
 
-    # Create tables only if not in production
+     # Initialize extensions
+    db.init_app(app)
+    migrate.init_app(app, db)
     if app.config.get("ENV") != "production":
         with app.app_context():
             logging.info("Creating database tables (non-production environment)...")
             db.create_all()
-
+                       
+    app.debug = True 
     return app
-if __name__ == '__main__':
-    app = create_app()
-    app.run(debug=True, host="0.0.0.0", port=5000)
+

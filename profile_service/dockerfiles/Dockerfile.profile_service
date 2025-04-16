@@ -22,7 +22,10 @@ COPY profile_service /profile_service/profile_service
 RUN poetry install  --no-ansi --no-interaction
 
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 FROM python:3.13-slim AS prod
 
 

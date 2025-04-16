@@ -3,7 +3,7 @@ services:
     build:
       context: ./profile_service
       dockerfile: ./dockerfiles/Dockerfile.profile_service
-      target: prod
+      target: dev
     container_name: profile_service
     ports:
       - "5200:5000"

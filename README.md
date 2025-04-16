@@ -14,3 +14,6 @@ docker build --target prod --tag profile_service:prod -f dockerfiles/Dockerfile.
 
 docker run --publish 8000:5000 -it --env-file .env profile_service:prod
 docker run --publish 8000:5000 -it --env-file .env profile_service:dev
+
+Python Debuggy 
+docker-compose up --build

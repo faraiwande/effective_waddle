@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from profile_service.utils.auth_utils import *
-from profile_service.profile_service.models.profile_model import db, BaseUser, RoleUpdate
+from profile_service.models.user_profile_model import db, BaseUser, RoleUpdate
 from profile_service.utils.s3_utils import upload_image_to_s3
 from datetime import datetime
 

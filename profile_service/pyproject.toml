@@ -15,6 +15,8 @@ requests = "^2.32.3"
 sqlalchemy = "^2.0.40"
 boto3 = "^1.37.34"
 pillow = "^11.2.1"
+cryptography = "^44.0.2"
+psycopg2-binary = "^2.9.10"
 
 
 [build-system]

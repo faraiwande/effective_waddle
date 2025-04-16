@@ -112,3 +112,4 @@ def requires_auth(f: Any) -> Any:
         return f(*args, **kwargs)
 
     return decorated_function
+

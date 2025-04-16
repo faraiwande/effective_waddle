@@ -14,7 +14,19 @@ class BaseUser(db.Model):
     picture = db.Column(db.String(255))
     is_service_provider = db.Column(db.Boolean, default=False)
     user_rating = db.Column(db.Float, default=5.0)
+    mobile_number = db.Column(db.String(20))
 
+    # Location fields
+    address_line1 = db.Column(db.String(255))
+    address_line2 = db.Column(db.String(255))
+    city = db.Column(db.String(100))
+    province_or_state = db.Column(db.String(100))
+    postal_code = db.Column(db.String(20))
+    country = db.Column(db.String(100))
+    latitude = db.Column(db.Float)
+    longitude = db.Column(db.Float)
+
+    # Weekly schedule
     weekly_schedule = db.Column(
         JSON,
         default=lambda: {

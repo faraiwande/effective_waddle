@@ -1,0 +1,32 @@
+services:
+  profile_service:
+    build:
+      context: ./profile_service
+      dockerfile: ./dockerfiles/Dockerfile.profile_service
+      target: prod
+    container_name: profile_service
+    # ports:
+    #   - "5200:5000"
+    env_file:
+      - ./profile_service/.env
+    volumes:
+      - ./profile_service:/profile_service
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:15
+    container_name: profile_service_db
+    ports:
+      - "55432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: profile_service_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

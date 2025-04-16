@@ -29,8 +29,6 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
         'DATABASE_URL', 'sqlite:///ridebase.db'
     )
-    
-   
 
     # Register Blueprints
     app.register_blueprint(reg_bp)

@@ -2,8 +2,8 @@
     "version": "0.2.0",
     "configurations": [
       {
-        "name": "Docker: Flask App Debug",
-        "type": "python",
+        "name": "Python: Remote Attach",
+        "type": "debugpy",
         "request": "attach",
         "connect": {
           "host": "localhost",
@@ -11,8 +11,8 @@
         },
         "pathMappings": [
           {
-            "localRoot": "${workspaceFolder}",
-            "remoteRoot": "/profile_service"
+            "localRoot": "${workspaceFolder}/profile_service",
+            "remoteRoot": "/app/profile_service"
           }
         ]
       }

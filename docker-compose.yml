@@ -5,8 +5,8 @@ services:
       dockerfile: ./dockerfiles/Dockerfile.profile_service
       target: prod
     container_name: profile_service
-    # ports:
-    #   - "5200:5000"
+    ports:
+      - "5200:5000"
     env_file:
       - ./profile_service/.env
     volumes:
@@ -19,7 +19,7 @@ services:
     image: postgres:15
     container_name: profile_service_db
     ports:
-      - "55432:5432"
+      - "5432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres

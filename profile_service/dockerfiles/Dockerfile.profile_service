@@ -35,8 +35,8 @@ COPY --from=base /profile_service /profile_service
 VOLUME /profile_service
 
 # Use Gunicorn with Gevent Worker
-CMD ["sh", "-c", "poetry run flask db init && poetry run flask db upgrade && poetry run gunicorn -b 0.0.0.0:5000 --worker-class gevent --workers 5 profile_service.app:create_app\\(\\)"]
-# CMD ["poetry", "run", "gunicorn", "-b", "0.0.0.0:5000", "--worker-class", "gevent", "--workers", "5", "--worker-connections", "1000","--reload", "profile_service.app:create_app()"]
+# CMD ["sh", "-c", "poetry run flask db upgrade && poetry run gunicorn -b 0.0.0.0:5000 --worker-class gevent --workers 5 profile_service.app:create_app\\(\\)"]
+CMD ["poetry", "run", "gunicorn", "-b", "0.0.0.0:5000", "--worker-class", "gevent", "--workers", "5", "--worker-connections", "1000","--reload", "profile_service.app:create_app()"]
 
 EXPOSE 5000
 

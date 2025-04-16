@@ -27,8 +27,10 @@ def create_app():
     
     # Set database URI (with fallback for development)
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
-        'DATABASE_URL', 'sqlite:///ridebase.db'
+        'DATABASE_URL', 'sqlite:///default.db'
     )
+    # Set environment (default to development if not set)
+    app.config['ENV'] = os.environ.get('ENV', 'development')
 
     # Register Blueprints
     app.register_blueprint(reg_bp)
@@ -44,11 +46,11 @@ def create_app():
      # Initialize extensions
     db.init_app(app)
     migrate.init_app(app, db)
-    if app.config.get("ENV") != "production":
+    if app.config['ENV'] != "production":
         with app.app_context():
             logging.info("Creating database tables (non-production environment)...")
             db.create_all()
                        
-    app.debug = True 
+    app.debug = app.config['ENV'] != "production"
     return app
 

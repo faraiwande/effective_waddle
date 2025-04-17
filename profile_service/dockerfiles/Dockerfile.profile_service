@@ -38,20 +38,4 @@ CMD ["poetry", "run", "gunicorn", "-b", "0.0.0.0:5000", "--worker-class", "geven
 EXPOSE 5000
 
 
-FROM python:3.13-slim AS dev
-
-
-COPY --from=base /root /root
-ENV PATH=$PATH:/root/.local/bin/
-WORKDIR /profile_service
-COPY --from=base /profile_service /profile_service
-
-
-# Use Gunicorn with Gevent Worker and debugpy for debugging
-CMD ["poetry", "run", "python", "-Xfrozen_modules=off", "-m", "debugpy", "--listen", "0.0.0.0:5678", "--wait-for-client", "-m", "gunicorn", "-b", "0.0.0.0:5000", "--worker-class", "gevent", "--workers", "2", "--worker-connections", "1000","--reload", "profile_service.app:create_app()"]
-
-EXPOSE 5000
-EXPOSE 5678
-
-
 
